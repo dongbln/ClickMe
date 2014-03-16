@@ -13,10 +13,14 @@ import java.util.Set;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import com.alchemyapi.api.AlchemyAPI;
+
+ 
 
 class User {
 	private String id;
@@ -104,6 +108,7 @@ class Url {
  * 
  */
 public class App {
+	private static final Log log = LogFactory.getLog(App.class);
 	private static String apiKey = " ";
 
 	public static void main(String[] args) throws XPathExpressionException,
@@ -122,7 +127,8 @@ public class App {
 		String x3 = "http://www.bild.de/sport/fussball/fussball/home-15769054.bild.html";
 		String x4 = "http://www.bild.de/spiele/online-spiele/online-spiele/home-15720618.bild.html";
 		String x5 = "http://www.bild.de/politik/inland/bischof/marx-neuer-vorsitzender-der-bischofskonferenz-35036532.bild.html";
-
+		
+		log.info("Adding urls in the url list");
 		url1.add(x1);
 		url1.add(x2);
 		url1.add(x3);
@@ -141,6 +147,7 @@ public class App {
 		List<String> c1 = new ArrayList<String>();
 		List<String> c2 = new ArrayList<String>();
 		List<String> c3 = new ArrayList<String>();
+		log.info("Classify urls");
 		c1.addAll(usr1.click(api, url1));
 		c1.addAll(usr1.click(api, url2));
 		c1.addAll(usr1.click(api, url3));
@@ -149,27 +156,27 @@ public class App {
 
 		c3.addAll(usr3.click(api, url1));
 		c3.addAll(usr3.click(api, url3));
-
+		
 		Map<User, List<String>> db = new HashMap<User, List<String>>();
+		log.info("Adding categories in the map ");
 		db.put(usr1, c1);
 		db.put(usr2, c2);
 		db.put(usr3, c3);
 
-		Map<User, List<String>> db2 = new HashMap<User, List<String>>();
-
-		db2.put(usr1, usr1.click(api, url1));
-		db2.put(usr1, usr1.click(api, url2));
-		db2.put(usr1, usr1.click(api, url3));
-		db2.put(usr2, usr2.click(api, url3));
-		db2.put(usr2, usr2.click(api, url2));
-		db2.put(usr3, usr3.click(api, url3));
+//		Map<User, List<String>> db2 = new HashMap<User, List<String>>();
+//		db2.put(usr1, usr1.click(api, url1));
+//		db2.put(usr1, usr1.click(api, url2));
+//		db2.put(usr1, usr1.click(api, url3));
+//		db2.put(usr2, usr2.click(api, url3));
+//		db2.put(usr2, usr2.click(api, url2));
+//		db2.put(usr3, usr3.click(api, url3));
 
 		// print the results
 		System.out.println("Print1");
 		print(db);
 		// print the results
-		System.out.println("Print2");
-		print(db2);
+//		System.out.println("Print2");
+//		print(db2);
 
 	}
 
