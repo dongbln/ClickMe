@@ -112,6 +112,7 @@ public class App {
 		User usr1 = new User("Usr1");
 		User usr2 = new User("Usr2");
 		User usr3 = new User("Usr3");
+		
 		Set<String> url1 = new HashSet<String>();
 		Set<String> url2 = new HashSet<String>();
 		Set<String> url3 = new HashSet<String>();
