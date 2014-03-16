@@ -116,6 +116,7 @@ public class App {
 		Set<String> url1 = new HashSet<String>();
 		Set<String> url2 = new HashSet<String>();
 		Set<String> url3 = new HashSet<String>();
+		//adding urls
 		String x1 = "http://www.bild.de/ratgeber/gesundheit/gesundheit/home-15734752.bild.html";
 		String x2 = "http://www.bild.de/geld/startseite/geld/home-15683376.bild.html";
 		String x3 = "http://www.bild.de/sport/fussball/fussball/home-15769054.bild.html";
