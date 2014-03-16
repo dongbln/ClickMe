@@ -104,7 +104,7 @@ class Url {
  * 
  */
 public class App {
-	private static String apiKey = "";
+	private static String apiKey = " ";
 
 	public static void main(String[] args) throws XPathExpressionException,
 			IOException, SAXException, ParserConfigurationException {
