@@ -20,8 +20,6 @@ import org.xml.sax.SAXException;
 
 import com.alchemyapi.api.AlchemyAPI;
 
- 
-
 class User {
 	private String id;
 	private List<String> url;
@@ -117,17 +115,17 @@ public class App {
 		User usr1 = new User("Usr1");
 		User usr2 = new User("Usr2");
 		User usr3 = new User("Usr3");
-		
+
 		Set<String> url1 = new HashSet<String>();
 		Set<String> url2 = new HashSet<String>();
 		Set<String> url3 = new HashSet<String>();
-		//adding urls
+		// adding urls
 		String x1 = "http://www.bild.de/ratgeber/gesundheit/gesundheit/home-15734752.bild.html";
 		String x2 = "http://www.bild.de/geld/startseite/geld/home-15683376.bild.html";
 		String x3 = "http://www.bild.de/sport/fussball/fussball/home-15769054.bild.html";
 		String x4 = "http://www.bild.de/spiele/online-spiele/online-spiele/home-15720618.bild.html";
 		String x5 = "http://www.bild.de/politik/inland/bischof/marx-neuer-vorsitzender-der-bischofskonferenz-35036532.bild.html";
-		
+
 		log.info("Adding urls in the url list");
 		url1.add(x1);
 		url1.add(x2);
@@ -156,27 +154,27 @@ public class App {
 
 		c3.addAll(usr3.click(api, url1));
 		c3.addAll(usr3.click(api, url3));
-		
+
 		Map<User, List<String>> db = new HashMap<User, List<String>>();
 		log.info("Adding categories in the map ");
 		db.put(usr1, c1);
 		db.put(usr2, c2);
 		db.put(usr3, c3);
 
-//		Map<User, List<String>> db2 = new HashMap<User, List<String>>();
-//		db2.put(usr1, usr1.click(api, url1));
-//		db2.put(usr1, usr1.click(api, url2));
-//		db2.put(usr1, usr1.click(api, url3));
-//		db2.put(usr2, usr2.click(api, url3));
-//		db2.put(usr2, usr2.click(api, url2));
-//		db2.put(usr3, usr3.click(api, url3));
+		// Map<User, List<String>> db2 = new HashMap<User, List<String>>();
+		// db2.put(usr1, usr1.click(api, url1));
+		// db2.put(usr1, usr1.click(api, url2));
+		// db2.put(usr1, usr1.click(api, url3));
+		// db2.put(usr2, usr2.click(api, url3));
+		// db2.put(usr2, usr2.click(api, url2));
+		// db2.put(usr3, usr3.click(api, url3));
 
 		// print the results
 		System.out.println("Print1");
 		print(db);
 		// print the results
-//		System.out.println("Print2");
-//		print(db2);
+		// System.out.println("Print2");
+		// print(db2);
 
 	}
 
@@ -191,5 +189,27 @@ public class App {
 
 		}
 	}
+
+	public static Map<String, Integer> countCategory(Map<User, List<String>> db) {
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		for (Entry<User, List<String>> entry : db.entrySet()) {
+			User usr = entry.getKey();
+			List<String> category = entry.getValue();
+			for (String string : category) {
+				Integer count = result.get(string);
+				if (count != null) {
+					result.put(string, count + 1);
+				} else {
+					result.put(string, 1);
+				}
+			}
+		}
+		return result;
+	}
+	
+//	public static printCountCategory(Map<User, List<String>> tb){
+//		
+//		return null;
+//	}
 
 }
