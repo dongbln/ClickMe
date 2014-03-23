@@ -34,7 +34,7 @@ import com.alchemyapi.api.AlchemyAPI;
  * 
  */
 public class Simulation {
-	private static String apiKey = "b904c2ba15208407fce59302ea8cd7cc4ad56fa6";
+	
 	private static final Log logger = LogFactory.getLog(Simulation.class);
 	private static final String x1 = "http://www.bild.de/ratgeber/gesundheit/gesundheit/home-15734752.bild.html";
 	private static final String x2 = "http://www.bild.de/geld/startseite/geld/home-15683376.bild.html";
