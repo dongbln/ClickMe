@@ -42,11 +42,16 @@ public class URLExtractBolt extends BaseRichBolt {
 	public static final Logger logger = LoggerFactory
 			.getLogger(URLExtractBolt.class);
 	private OutputCollector collector;
-	private String apiKey = "b904c2ba15208407fce59302ea8cd7cc4ad56fa6";
+	
 	private Random rand;
 	private Queue<String> q ;
 	private User user;
 	private URL aURL;
+	private String apiKey;
+	
+	public URLExtractBolt(String apiKey){
+		this.apiKey=apiKey;
+	}
 
 	@SuppressWarnings("rawtypes")
 	public void prepare(Map stormConf, TopologyContext context,
@@ -112,7 +117,7 @@ public class URLExtractBolt extends BaseRichBolt {
 		// data.put(user, (ArrayList<String>) urls);
 
 		// collector.emit(new Values(user)) ;
-		// collector.ack(input);
+		 collector.ack(input);
 		
 		//print(user);
 

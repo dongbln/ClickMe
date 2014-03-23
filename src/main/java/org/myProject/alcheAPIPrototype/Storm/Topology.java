@@ -27,6 +27,7 @@ public class Topology {
 	private static final String x9 = "http://www.bild.de/regional/frankfurt/frankfurt-am-main/wetter_extreme-35025306.bild.html";
 	private static final String x10 = "http://www.webtrekk.com/de/home.html";
 	static String[] urls = new String[] { x1, x2, x3, x4, x5, x6, x7, x8, x9, x10 };
+	
 
 	/**
 	 * @param args
@@ -38,7 +39,7 @@ public class Topology {
 			InvalidTopologyException, InterruptedException {
 		TopologyBuilder builder = new TopologyBuilder();
 		builder.setSpout("spout", new RandomUrlSpout(urls));
-		builder.setBolt("bolt1", new URLExtractBolt()).shuffleGrouping("spout");
+		builder.setBolt("bolt1", new URLExtractBolt(apiKey)).shuffleGrouping("spout");
 		// builder.setBolt("bolt1", new
 		// URLExtractBolt()).fieldsGrouping("spout",
 		// new Fields("usr"));
@@ -53,7 +54,7 @@ public class Topology {
 		conf.setDebug(false);
 
 		if (args != null && args.length > 0) {
-			conf.setNumWorkers(1);
+			conf.setNumWorkers(2);
 
 			StormSubmitter.submitTopology(args[0], conf,
 					builder.createTopology());
